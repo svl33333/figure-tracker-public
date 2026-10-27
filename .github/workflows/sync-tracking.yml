@@ -1,0 +1,38 @@
+name: Sync figure watchlist selections
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: figure-tracker-state-sync
+  cancel-in-progress: false
+
+jobs:
+  sync-tracking:
+    if: github.event.issue.user.login == 'svl33333' && github.event.issue.title == 'FIGURE_TRACKER_SET_V1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply validated watchlist settings
+        run: python scripts/apply_tracking_issue.py
+      - name: Commit saved tracking state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tracking.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update tracked figure selection from issue #${{ github.event.issue.number }}"
+            git push origin HEAD:main
+          fi
+      - name: Acknowledge and close settings issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "監視設定を記録しました。サイトと定期チェックの参照対象に反映されます。"
+          gh issue close "$ISSUE_NUMBER"

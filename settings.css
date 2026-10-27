@@ -1,0 +1,36 @@
+
+/* Tracking selections: published via authenticated GitHub Issues, not browser-only state. */
+.watch-dashboard{background:#eaf2ff;border-bottom:1px solid #d1e1f9;color:#16355e}
+.watch-dashboard .shell{padding-top:14px;padding-bottom:15px}
+.watch-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.watch-toolbar strong{font-size:15px}
+.watch-counts{font-size:13px;color:#425b80}
+.watch-steps{font-size:12px;line-height:1.65;color:#4f6481;margin:7px 0 10px}
+.watch-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.watch-save,.watch-reset,.watch-refresh{font:inherit;font-size:12px;font-weight:700;line-height:1.2;display:inline-flex;align-items:center;justify-content:center;padding:10px 13px;border-radius:9px;cursor:pointer;text-decoration:none}
+.watch-save{border:1px solid #2158bd;color:#fff;background:#2158bd}
+.watch-save.disabled{opacity:.5;cursor:not-allowed}
+.watch-reset,.watch-refresh{border:1px solid #b7cee9;color:#315381;background:#fff}
+.watch-status{font-size:12px;margin:0 0 0 4px;color:#385779}
+.watch-status.error{color:#a12828}
+.watch-select{flex:0 1 170px}
+.watch-choice{border-top:1px solid #e6e9f2;margin-top:12px;padding-top:12px}
+.watch-choice-title{font-size:12px;color:#596880;font-weight:700;margin-bottom:8px}
+.watch-choice-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.watch-choice-buttons button{font:inherit;appearance:none;border:1px solid #cbd5e2;border-radius:9px;padding:9px 6px;background:#f4f6fa;color:#47617f;font-size:12px;line-height:1.2;font-weight:700;cursor:pointer}
+.watch-choice-buttons button.active[data-watch-choice="keep"]{background:#e5f5ee;color:#075b40;border-color:#27a271}
+.watch-choice-buttons button.active[data-watch-choice="ignore"]{background:#fde8ec;color:#9a3447;border-color:#df8091}
+.card.watch-ignored{background:#f9f9fb}
+.card.watch-ignored .visual img{filter:saturate(.7)}
+.card[hidden]{display:none!important}
+@media(max-width:650px){
+ .watch-dashboard .shell{padding:12px 20px}
+ .watch-toolbar{gap:6px}
+ .watch-counts{width:100%}
+ .watch-steps{font-size:11px}
+ .watch-actions{gap:6px}
+ .watch-save,.watch-reset,.watch-refresh{font-size:11px;padding:9px 10px}
+ .watch-status{width:100%;margin:2px 0 0}
+ .watch-select{flex:1;min-width:130px}
+ .watch-choice-buttons button{padding:9px 4px;font-size:11px}
+}
